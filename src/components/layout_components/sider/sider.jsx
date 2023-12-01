@@ -46,7 +46,7 @@ export const SiderSection = () => {
                 <Link to='/'> Dashboard </Link>
             </Menu.Item>
             <Menu.Item key="2" icon={<PADicon />}>
-                <Link to='/passenger_deposite_acc/passenger_deposite_acc'> Passenger Deposite Acc </Link>
+                <Link to='/passenger_deposite_acc/passenger_deposite_acc_container'> Passenger Deposite Acc </Link>
             </Menu.Item>
             <SubMenu key="reportSubMenu" icon={<ReportIcon />} title="Report">
               <Menu.Item key="3">
@@ -61,10 +61,10 @@ export const SiderSection = () => {
             </SubMenu>
             <SubMenu key="receiptSubMenu" icon={<ReceiptIcon />} title="Receipt">
               <Menu.Item key="6">
-                <Link to='/receipt/cash_receipt_voucher'>Commission</Link>
+                <Link to='/receipt/cash_receipt_voucher/cash_receipt_voucher_container'>Cash Receipt Voucher</Link>
               </Menu.Item>
               <Menu.Item key="7">
-                <Link to='/receipt/agent_receipt'>Disbursement</Link>
+                <Link to='/receipt/agent_receipt'>Agent Deposite</Link>
               </Menu.Item>
             </SubMenu>
             <Menu.Item key="8" icon={<PaymentOrderIcon />}>

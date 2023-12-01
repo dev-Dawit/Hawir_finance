@@ -7,7 +7,7 @@ import Theme from "./components/layout/layout";
 const App = () => {
   return (
     <Router>
-    <Theme />
+      <Theme />
   </Router>
   );
 };
