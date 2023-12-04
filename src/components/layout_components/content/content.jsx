@@ -5,11 +5,14 @@ import PaymentOrder from '../../../routes/payment_order/payment_order';
 import Dashboard from '../../../routes/home/home';
 import PassengerDepositeAccContainer from '../../../routes/passenger_deposite_acc/passenger_deposite_acc_container';
 import AgentReceipt from '../../../routes/receipt/agent_receipt/agent_receipt';
-import Commission from '../../../routes/report/commission/commission';
-import Disbursement from '../../../routes/report/disbursement/disbursement';
+import Commission from '../../../routes/report/commission/commission_container';
+import Disbursement from '../../../routes/report/disbursement/disbursement_container';
 import TotalIncome from '../../../routes/report/total_income/total_income';
 import Home from '../../../routes/home/home';
 import CashReceiptVoucherContainer from '../../../routes/receipt/cash_receipt_voucher/cash_receipt_voucher_container';
+import Setting from '../../../routes/setting/setting';
+import CommissionContainer from '../../../routes/report/commission/commission_container';
+import DisbursementContainer from '../../../routes/report/disbursement/disbursement_container';
 
 const { Content,} = Layout;
 
@@ -35,9 +38,10 @@ export const ContentSection = () => {
             <Route path="/payment_order/payment_order" element={<PaymentOrder />} />
             <Route path="/receipt/agent_receipt" element={<AgentReceipt />} />
             <Route path="/receipt/cash_receipt_voucher/cash_receipt_voucher_container" element={<CashReceiptVoucherContainer />} />
-            <Route path="/report/commission" element={<Commission />} />
-            <Route path="/report/disbursement" element={<Disbursement />} />
+            <Route path="/report/commission_container" element={<CommissionContainer />} />
+            <Route path="/report/disbursement_container" element={<DisbursementContainer />} />
             <Route path="/report/total_income" element={<TotalIncome />} />
+            <Route path="/setting/setting" element={<Setting />} />
         </Routes>
     </Content>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout, Menu } from 'antd';
-import { DashboardOutlined, BankOutlined, PrinterOutlined, DollarOutlined, FileOutlined } from '@ant-design/icons';
+import { DashboardOutlined, BankOutlined, PrinterOutlined, DollarOutlined, FileOutlined, SettingOutlined } from '@ant-design/icons';
     
 import { Link } from 'react-router-dom';
 const { Sider } = Layout;   
@@ -37,6 +37,12 @@ export const SiderSection = () => {
         </div>
     )
 
+    const SettingIcon = () => (
+      <div>
+          <SettingOutlined style={{ marginRight: '10px' }} />
+        </div>
+    )
+
     const { SubMenu } = Menu;
     return (
       <Sider  style={{ background: '#f0f2f5', overflowY: 'auto' }}>
@@ -50,10 +56,10 @@ export const SiderSection = () => {
             </Menu.Item>
             <SubMenu key="reportSubMenu" icon={<ReportIcon />} title="Report">
               <Menu.Item key="3">
-                <Link to='/report/commission'>Commission</Link>
+                <Link to='/report/commission_container'>Commission</Link>
               </Menu.Item>
               <Menu.Item key="4">
-                <Link to='/report/disbursement'>Disbursement</Link>
+                <Link to='/report/disbursement_container'>Disbursement</Link>
               </Menu.Item>
               <Menu.Item key="5">
                 <Link to='/report/total_income'>Total Income</Link>
@@ -69,6 +75,9 @@ export const SiderSection = () => {
             </SubMenu>
             <Menu.Item key="8" icon={<PaymentOrderIcon />}>
                 <Link to='/payment_order/payment_order'>Payment Order</Link>
+            </Menu.Item>
+            <Menu.Item key="9" icon={<SettingIcon />}>
+                <Link to='/setting/setting'>Setting</Link>
             </Menu.Item>
           </Menu>
         </Sider>
