@@ -7,83 +7,83 @@ import { CommissionAPI } from '../../../../api/commission';
 const DisbursementDetailModal = ({
   visible,
   onCancel,
-  selectedCommission,
+  selectedDisbursement,
 }) => {
   const [form] = Form.useForm();
-  const [commissionDetails, setCommissionDetails] = useState(null);
+  const [disbursementDetails, setDisbursementDetails] = useState(null);
 
-  console.log("selectedCommission",selectedCommission);
+  console.log("selectedDisbursement",selectedDisbursement);
 
   
   useEffect(() => {
-    const fetchCommissionDetails = async () => {
+    const fetchDisbursementDetails = async () => {
       try {
-        const response = await CommissionAPI.getCommissionDetail();
+        const response = await axios.get(`http://hawir.abruthtech.com:4000/api/disbursement/getDisbursementDetail?disbursement_id=${selectedDisbursement.disbursement_id}`);
         console.log("response", response.data)
-        setCommissionDetails(response.data);
+        setDisbursementDetails(response.data);
       } catch (error) {
-        console.error('Error fetching commission details:', error);
-        message.error('Error fetching commission details. Please try again.');
+        console.error('Error fetching Disbursement details:', error);
+        message.error('Error fetching Disbursement details. Please try again.');
       }
     };
 
-    if (selectedCommission) {
-      fetchCommissionDetails();
+    if (selectedDisbursement) {
+      fetchDisbursementDetails();
     }
-  }, [selectedCommission]);
+  }, [selectedDisbursement]);
 
 
   return (
     <Modal
       visible={visible}
-      title="Commission Detail"
+      title="Disbursement Detail"
       onCancel={onCancel}
       footer={null}
     >
-      {commissionDetails ? (
+      {disbursementDetails ? (
         <Box>
             <Grid container>
                 <Grid item xs={12}>
                     <Typography>
-                        <strong>Commission Amount</strong>፡  
+                        <strong>Disbursement Amount</strong>፡  
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <Typography>
-                        {commissionDetails.commission_amount}
-                    </Typography>
-                    <Divider orientation="horizontal" flexItem sx={{ mr: "-1px" }}/>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography>
-                        <strong>Commission Date</strong>፡ 
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography>
-                        {commissionDetails.commission_date}
+                        {disbursementDetails.disbursement_amount}
                     </Typography>
                     <Divider orientation="horizontal" flexItem sx={{ mr: "-1px" }}/>
                 </Grid>
                 <Grid item xs={12}>
                     <Typography>
-                        <strong>Commission Trip Id</strong>፡ 
+                        <strong>Disbursement Date</strong>፡ 
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <Typography>
-                        {commissionDetails.commission_trip_id}
+                        {disbursementDetails.disbursement_payment_date}
                     </Typography>
                     <Divider orientation="horizontal" flexItem sx={{ mr: "-1px" }}/>
                 </Grid>
                 <Grid item xs={12}>
                     <Typography>
-                        <strong>Commission Type</strong>፡ 
+                        <strong>Disbursement Trip Id</strong>፡ 
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <Typography>
-                        {commissionDetails.commission_type}
+                        {disbursementDetails.disbursement_trip_id}
+                    </Typography>
+                    <Divider orientation="horizontal" flexItem sx={{ mr: "-1px" }}/>
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography>
+                        <strong>Disbursement Status</strong>፡ 
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography>
+                        {disbursementDetails.disbursement_status}
                     </Typography>
                     <Divider orientation="horizontal" flexItem sx={{ mr: "-1px" }}/>
                 </Grid>

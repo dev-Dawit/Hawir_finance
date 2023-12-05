@@ -7,7 +7,7 @@ export const CommissionAPI = {
 
   getCommissionDetail: async (commission_id) => {
     try {
-      const apiUrl = `http://hawir.abruthtech.com:4000/api/commission/getCommissionDetail/${commission_id}`;
+      const apiUrl = `http://hawir.abruthtech.com:4000/api/commission/getCommissionDetail?commission_id=${commission_id}`;
       const response = await axios.get(apiUrl);
       console.log('API Response:', response.data);
       return response.data;

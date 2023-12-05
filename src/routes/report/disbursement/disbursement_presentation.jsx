@@ -11,6 +11,8 @@ const DisbursementPresentation = ({
     detailModalVisible,
     handleDetailModalClose,
 }) => {
+
+    console.log("disbursementData", disbursementData)
   const disbursementTableData = disbursementData.map((disbursement) => ({
     disbursement_id: disbursement?.disbursement_id || "",
     disbursement_agent_id: disbursement?.disbursement_agent_id || "",
@@ -58,9 +60,9 @@ const DisbursementPresentation = ({
       headerName: "Disbursement status",
       flex: 0.7,
       headerClassName: "super-app-theme--header",
-      renderCell: (params) => {
-         <Chip label={`${selectedDisbursement.disbursement_status}`} size="small" />;  
-      },
+      renderCell: (params) => (
+         <Chip label={params.row.disbursement_status} size="small" color="primary" />  
+      ),
     },
     
     {
@@ -76,7 +78,7 @@ const DisbursementPresentation = ({
             startIcon={<OpenInNew />}
             size="small"
           >
-            ክፈት
+            Open
           </Button>
         </Stack>
       ),

@@ -47,6 +47,7 @@ const CommissionContainer = () => {
     });
   };
 
+  console.log("commissionData", commissionData)
   return (
     <CommissionPresentation
       commissionData={commissionData}

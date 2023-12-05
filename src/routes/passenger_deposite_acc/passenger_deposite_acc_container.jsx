@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PassengerDepositeAccPresentation from './passenger_deposite_acc_presentation';
-
-
+import { PassengerDepositeAccountAPI } from '../../api/pda';
 
 const PassengerDepositeAccContainer = () => {
   const [accounts, setAccounts] = useState([]);
@@ -29,39 +28,32 @@ const PassengerDepositeAccContainer = () => {
     console.log('Search value:', e.target.value);
     
   };
-  
 
-  // Fetch the list of accounts when the component mounts
-  // useEffect(() => {
-  //   async function fetchAccounts() {
-  //     try {
-  //       const response = await kdusanAPI.getKdusanList();
-  //       if (Array.isArray(response.data)) {
-  //         setAccounts(response.data); // Assuming the API response is an array of Kdusans
-  //       } else {
-  //         setAccounts([]); // Set an empty array if the response is not an array
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching Kdusans:', error);
-  //       setAccounts([]); // Set an empty array on error
-  //     }
-  //   }
+
+  useEffect(() => {
+    async function fetchAccounts() {
+      try {
+        const response = await PassengerDepositeAccountAPI.getPassengerDepositeAccountList();
+        if (Array.isArray(response.data)) {
+          setAccounts(response.data);
+          console.log("pdaAPI return", response.data)
+        } else {
+          setAccounts([]); 
+        }
+      } catch (error) {
+        console.error('Error fetching Passenger Deposite Account:', error);
+        setAccounts([]); 
+      }
+    }
   
-  //   fetchAccounts();
-  // }, []);
-  
+    fetchAccounts();
+  }, []);
   console.log('accounts:', accounts);
-  console.log(typeof(accounts));
-
-// const accountsTableData = accounts.map((kdus) => ({
-//   id: kdus?.saint_id || '', // Use optional chaining (?.) to avoid the error
-//   saint_name: kdus?.saint_name || '',
-//   saint_description: kdus?.saint_description || '',
-// }));
 
   return (
     <PassengerDepositeAccPresentation
       //accountsTableData={accountsTableData}
+      accounts={accounts}
       setAccounts={setAccounts}
       selectedAccount={selectedAccount}
       addNewAccount={addNewAccount}

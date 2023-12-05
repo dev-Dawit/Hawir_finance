@@ -16,8 +16,7 @@ const CommissionPresentation = ({
     commission_amount: commission?.commission_amount || "",
     commission_date: commission?.commission_date || "",
     commission_trip_id: commission?.commission_trip_id || "",
-    commission_type: commission?.commission_type || "",
-    
+    commission_type: commission?.commission_type || ""   
   }));
 
   let columns = [
@@ -65,7 +64,7 @@ const CommissionPresentation = ({
             startIcon={<OpenInNew />}
             size="small"
           >
-            ክፈት
+            Open
           </Button>
         </Stack>
       ),

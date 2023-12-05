@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LocalDataGrid from "../../components/shared/data grid/dataGrid";
 import { Box, Button, Chip, Input, InputAdornment, Stack, Typography } from "@mui/material";
 import Delete from "@mui/icons-material/Delete";
@@ -7,14 +7,11 @@ import OpenInNew from "@mui/icons-material/OpenInNew";
 import AddNewAccountModal from "./modals/addNewAccountModal";
 import DetailModal from "./modals/detailModal";
 import SearchIcon from '@mui/icons-material/Search';
-// import EditKdusanModal from "./modals/editKdusan.modal";
-// import DetailKduasanModal from "./modals/detailKdusan.modal";
-// import AddNewKdusanModal from "../../../components/modals/addNewKdus.component";
-
 
 
 const PassengerDepositeAccPresentation = ({
     //accountsTableData,
+    accounts,
     setAccounts,
     selectedAccount,
     addNewAccount,
@@ -28,21 +25,23 @@ const PassengerDepositeAccPresentation = ({
     handleDetailClick,
     handleSearchChange,
 }) => {
+  
+
     let columns = [
         {
-            field: "id",
+            field: "passenger_deposit_account_id",
             headerName: "ID",
             flex: 0.7,
             headerClassName: "super-app-theme--header",
         },
         {
-            field: "bank_ame",
+            field: "passenger_deposit_account_bank_name",
             headerName: "Bank Name",
             flex: 0.7,
             headerClassName: "super-app-theme--header",
         },
         {
-            field: "account_number",
+            field: "passenger_deposit_account_account_number",
             headerName: "Account Number",
             flex: 0.7,
             headerClassName: "super-app-theme--header",
@@ -107,13 +106,25 @@ const PassengerDepositeAccPresentation = ({
         },
       ];
       
+// const accountsTableData = accounts.map((kdus) => ({
+//   id: kdus?.saint_id || '', // Use optional chaining (?.) to avoid the error
+//   saint_name: kdus?.saint_name || '',
+//   saint_description: kdus?.saint_description || '',
+// }));
+
+const accountsTableData = accounts.map((account) => ({
+  passenger_deposit_account_id: account?.passenger_deposit_account_id || '', // Use optional chaining (?.) to avoid the error
+  passenger_deposit_account_bank_name: account?.passenger_deposit_account_bank_name || '',
+  passenger_deposit_account_account_number: account?.passenger_deposit_account_account_number || '',
+}));
+
       return (
         <Box>
           <LocalDataGrid
             title={"Bank Accounts"}
             columns={columns}
-            //data={accountsTableData}
-            getRowId={(row) => row.id}
+            data={accountsTableData}
+            getRowId={(row) => row.passenger_deposit_account_id}
             actionButtons={ 
                 <div>
                     <Input
@@ -133,10 +144,10 @@ const PassengerDepositeAccPresentation = ({
               }
           />
           
-          {/*<AddNewAccountModal 
+          <AddNewAccountModal 
             visible={createNewAccountModalVisible}
             onCancel={() => setCreateNewAccountModalVisible(false)}
-        />*/}
+          />
           {/*<EditKdusanModal
             visible={editModalVisible}
             onCancel={() => setEditModalVisible(false)}

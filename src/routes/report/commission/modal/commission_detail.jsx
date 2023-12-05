@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Input, Modal, message } from 'antd';
-import axios from 'axios';
 import { Box, Divider, Grid, Typography } from '@mui/material';
 import { CommissionAPI } from '../../../../api/commission';
+import axios from 'axios';
 
 const CommissionDetailModal = ({
   visible,
@@ -18,21 +18,23 @@ const CommissionDetailModal = ({
   useEffect(() => {
     const fetchCommissionDetails = async () => {
       try {
-        const response = await CommissionAPI.getCommissionDetail();
-        console.log("response", response.data)
-        setCommissionDetails(response.data);
+        if (selectedCommission && selectedCommission.commission_id) {
+          const response = await axios.get(`http://hawir.abruthtech.com:4000/api/commission/getCommissionDetail?commission_id=${selectedCommission.commission_id}`);
+          console.log("CommissionAPI response", response.data);
+          setCommissionDetails(response.data);
+        }
       } catch (error) {
         console.error('Error fetching commission details:', error);
         message.error('Error fetching commission details. Please try again.');
       }
     };
-
-    if (selectedCommission) {
-      fetchCommissionDetails();
-    }
+  
+    fetchCommissionDetails();
   }, [selectedCommission]);
+  
+  
 
-
+console.log("commissionDetails", commissionDetails);
   return (
     <Modal
       visible={visible}
