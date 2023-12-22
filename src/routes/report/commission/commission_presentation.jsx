@@ -14,11 +14,13 @@ const CommissionPresentation = ({
   const commissionTableData = commissionData.map((commission) => ({
     commission_id: commission?.commission_id || "",
     commission_amount: commission?.commission_amount || "",
-    commission_date: commission?.commission_date || "",
+    commission_date: commission?.commission_date.split("T")[0] || "",
     commission_trip_id: commission?.commission_trip_id || "",
     commission_type: commission?.commission_type || ""   
   }));
 
+
+  
   let columns = [
     {
       field: "commission_id",
